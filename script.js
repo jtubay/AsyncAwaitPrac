@@ -43,7 +43,33 @@ const promptUser = () =>{
 }
 
 let generateHTML = ({name, location, github, linkedin}) => {
-    
+    return `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    </head>
+    <body>
+    <div class="jumboton jumboton-fluid">
+    <div class="container">
+        <h1 class="display-4">My name is ${name}</h1>
+        <p class="lead">I am from ${location}</p>
+        <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
+        <ul class="list-group">
+          <li class="list-group-item">My GitHub username is ${github}</li>
+          <li class="list-group-item">LinkedIn: ${linkedin}</li>
+        </ul>
+
+    </div>
+
+</div>
+        
+        
+    </body>
+    </html>`
 
 }
 
@@ -53,10 +79,11 @@ const init = async() => {
         const answers = await promptUser()
         console.log(answers)
         const html =  generateHTML(answers)
-        await writeFileAsync('index.html', html)
+        await writeFileAsync(`${answers.name}.html`, html)
     } catch(err) {
         console.log(err);
     }
+    console.log('me first?')
 }
 
 init()
